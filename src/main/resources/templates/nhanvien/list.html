@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách nhân viên</title>
+    <!-- Bao gồm Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Danh sách nhân viên</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Tên</th>
+            <th>Giới tính</th>
+            <th>Nơi sinh</th>
+            <th>Lương</th>
+            <th>Ảnh</th>
+            <th>Thao tác</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Duyệt qua danh sách nhân viên -->
+        <tr th:each="nhanVien, iterStat : ${nhanViens}">
+            <td th:text="${iterStat.index + 1}"></td>
+            <td th:text="${nhanVien.tenNV}"></td>
+            <td th:text="${nhanVien.phai}"></td>
+            <td th:text="${nhanVien.noiSinh}"></td>
+            <td th:text="${nhanVien.luong}"></td>
+            <td>
+                <img th:src="${nhanVien.imageUrl}" alt="Ảnh của ${nhanVien.tenNV}" style="max-width: 100px;">
+            </td>
+            <td>
+                <a th:href="@{/nhanvien/edit/{id}(id=${nhanVien.id})}" class="btn btn-primary btn-sm">Chỉnh sửa</a>
+                <form th:action="@{/nhanvien/delete/{id}(id=${nhanVien.id})}" method="post" style="display: inline;">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-sm">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/nhanvien/add}" class="btn btn-success">Thêm nhân viên mới</a>
+    <a th:href="@{/}" class="btn btn-secondary">Trang chủ</a>
+</div>
+
+<!-- Bao gồm Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-Mk1Gd5ZTwM7FV/wDXr0qk8vxp6/ZI3bF0JpysUhpD7tkxhZ/r4GL5FL5MCI7BOwV"
+        crossorigin="anonymous"></script>
+</body>
+</html>

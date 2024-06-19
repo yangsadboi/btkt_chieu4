@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác nhận xóa</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="text-danger">Xác nhận xóa</h1>
+    <p>Bạn có chắc chắn muốn xóa bản ghi này?</p>
+    <form action="#" th:action="@{/nhanvien/delete/{id}}" th:object="${nhanVien.id}" method="post">
+        <input type="hidden" th:value="${nhanVien.id}">
+        <button type="submit" class="btn btn-danger mr-2">Xóa</button>
+        <a th:href="@{/nhanvien}" class="btn btn-secondary">Hủy</a>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+        integrity="sha384-Mk1Gd5ZTwM7FV/wDXr0qk8vxp6/ZI3bF0JpysUhpD7tkxhZ/r4GL5FL5MCI7BOwV"
+        crossorigin="anonymous"></script>
+</body>
+</html>
